@@ -1,0 +1,98 @@
+<ul class="search_result"></ul>
+
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-2">
+		<h1>Гости</h1>
+		<a href="http://crm.goodrepublic.ru/site/about" target="_blank">Что новенького?</a>
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-3">
+		<form class="form-inline form_lite">
+			<input type="text" class="form-control who" name="referal" placeholder="Фамилия гостя" autocomplete="off">
+{# 			<button type="submit" class="btn btn-default">Найти</button>
+#}		</form>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-5">
+	<div class="row">
+		<div class="col-xs-12 col-sm-4">
+			<h3 class="itog">{{ summnal|number_format(0, '.', ' ') }}р<span>Наличка</span> </h3>
+		</div>
+		<div class="col-xs-12 col-sm-4">
+			<h3 class="itog">{{ summbez|number_format(0, '.', ' ') }}р<span>Безнал</span> </h3>
+		</div>
+		<div class="col-xs-12 col-sm-4">
+			<h3 class="itog">{{ summpad|number_format(0, '.', ' ') }}р<span>Билетник</span> </h3>
+		</div>
+		<div class="col-xs-12 col-sm-4">
+			<h3 class="itog">{{ summpad|number_format(0, '.', ' ') }}р<span>GoodRepublic</span> </h3>
+		</div>
+	</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-2">
+	<a href="/persons/create" class="btn btn-primary mt20 pull-right">+ Создать гостя</a>
+</div>
+</div>
+
+
+
+<h2 class="air">Все гости (не в резиденции)</h2>
+
+<table class="table stacktable">
+	<tr>
+		<td>ФИО</td>
+		<td>Статус</td>
+		<td>Группа</td>
+		<td>Скидка</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	{% for out in outs %}
+		<tr>
+			<td><a href="/persons/view?id={{ out.id }}">{{ out.second_name }} {{ out.name }} {{ out.middle_name }}</a> <span>- {{ out.id }}</span></td>
+			<td>{{ out.status }}</td>
+			<td>{{ out.group|slice(0, 10) }}</td>
+			<td>{{ out.discount }}%</td>
+			<td>
+				{% set abonementactive = 0 %}
+				{% for abon in out.abonements %}
+					{% if abon.status == 1 %}
+						{% set abonementactive = 1 %}
+					{% endif %}
+				{% endfor %}
+
+				{% if abonementactive == 1 %}
+					<form method="get" action="/persons/visitabonement">
+						<input type="hidden" name="" value="/persons/visitabonement">
+						<input type="hidden" name="uid" value="{{ out.id }}">
+						<button type="submit" class="btn btn-primary">Абонемент</button>
+					</form>
+				{% else %}
+					<button type="" class="btn btn-empty">Абонемент</button>
+				{% endif %}
+			</td>
+			<td>
+				<form method="get" action="/persons/visit">
+					<input type="hidden" name="" value="/persons/visit">
+					<input type="hidden" name="uid" value="{{ out.id }}">
+					<button type="submit" class="btn btn-primary">Тариф</button>
+				</form>
+			</td>
+			<td>
+				<form>
+					<input type="hidden" name="uid" class="uid" value="{{ out.id }}">
+					<input type="button" class="byticket btn btn-primary" value="Билет">
+				</form>
+			</td>
+			<td>
+				<form>
+					<input type="hidden" name="uid" class="uid" value="{{ out.id }}">
+					<input type="button" class="sells btn btn-primary" value="Покупка">
+				</form>
+			</td>
+		</tr>
+	{% endfor %}
+</table>
+
+

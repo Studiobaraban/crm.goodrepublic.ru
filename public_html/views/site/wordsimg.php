@@ -1,0 +1,1 @@
+<img src="index.php?r=site/words">

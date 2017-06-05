@@ -1,0 +1,129 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-4">
+		<h1>Пополнения</h1>
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-4">
+		закупили и поставили на склад
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-2">
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-2">
+	</div>
+</div>
+
+<table class="table stacktable">
+	<tr>
+		<td>Дата</td>
+		<td>Товар</td>
+		<td>Кол-во</td>
+		<td class="ta-r pr15">Стоимость</td>
+		<td>Описание</td>
+		<td></td>
+	</tr>
+	{% for row in buys %}
+		<tr>
+			<td>{{ row.date|date('d.m H:i') }}</td>
+			<td>{{ row.items.name }}</td>
+			<td>{{ row.count }}</td>
+			<td class="ta-r pr15">{{ row.price }} р</td>
+			<td>{{ row.info }}</td>
+			<td><a href="/goods/update?id={{ row.id|e }}">edit</a></td>
+		</tr>
+	{% endfor %}
+</table>
+
+
+
+
+
+
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-4">
+		<h1>Списания</h1>
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-4">
+		то, что продали
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-2">
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-2">
+	</div>
+</div>
+
+<table class="table stacktable">
+	<tr>
+		<td>Гость</td>
+		<td>Товар</td>
+		<td>Дата</td>
+		<td class="ta-r pr15">Стоимость</td>
+		<td class="ta-c">Кол-во</td>
+		<td class="ta-r pr15">Итого</td>
+		<td>Ингредиенты</td>
+		<td>Тип оплаты</td>
+		<td>Инфо</td>
+		<td></td>
+	</tr>
+	{% for row in sells %}
+		<tr>
+			<td><a href="/persons/view?id={{ row.persons.id|e }}">{{ row.persons.second_name|e }} {{ row.persons.name|e }}</a></td>
+			<td><a href="/goods/view?id={{ row.goods.id|e }}">{{ row.goods.name }}</a></td>
+			<td>{{ row.date|date('d.m H:i') }}</td>
+			<td class="ta-r pr15">{{ row.price }} р</td>
+			<td class="ta-c">{{ row.count }} шт</td>
+			<td class="ta-r pr15">{{ row.itogo }} р</td>
+			<td>
+				{% for ingredient in row.goods.ingredients %}
+					{{ ingredient.items.name }} - {{ ingredient.count }} <br>
+				{% endfor %}
+			</td>
+			<td>
+				{% if row.type == 1 %}
+					Наличка
+				{% elseif row.type == 2 %}
+					БезНал
+				{% else %}
+					Билетник
+				{% endif %}
+			</td>
+			<td>{{ row.info }}</td>
+			<td><a href="/sells/update?id={{ row.id|e }}">edit</a></td>
+		</tr>
+	{% endfor %}
+</table>
+
+
+
+
+
+
+
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-6">
+		<h1>Остатки на складе</h1>
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-4">
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-2">
+	</div>
+</div>
+
+<table class="table stacktable">
+	<tr>
+		<td>Дата</td>
+		<td>Товар</td>
+		<td>Кол-во</td>
+		<td class="ta-r pr15">Стоимость</td>
+		<td>Описание</td>
+		<td></td>
+	</tr>
+	{% for row in buys %}
+		<tr>
+			<td>{{ row.date|date('d.m H:i') }}</td>
+			<td>{{ row.items.name }}</td>
+			<td>{{ row.count }}</td>
+			<td class="ta-r pr15">{{ row.price }} р</td>
+			<td>{{ row.info }}</td>
+			<td><a href="/goods/update?id={{ row.id|e }}">edit</a></td>
+		</tr>
+	{% endfor %}
+</table>

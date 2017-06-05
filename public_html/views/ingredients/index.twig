@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-6">
+		<h1>Составы товаров</h1>
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-4">
+		то, что продали
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-2">
+	</div>
+</div>
+
+<table class="table stacktable">
+	<tr>
+		<td>Товар</td>
+		<td class="ta-r pr15">Стоимость</td>
+		<td>Ингредиенты</td>
+		<td>Инфо</td>
+		<td></td>
+		<td></td>
+	</tr>
+	{% for row in goods %}
+		<tr>
+			<td><a href="/goods/view?id={{ row.id }}">{{ row.name }}</a></td>
+			<td class="ta-r pr15">{{ row.price }} р</td>
+			<td>
+				{% for ingredient in row.ingredients %}
+					{{ ingredient.items.name }} - {{ ingredient.count }} <br>
+				{% endfor %}
+			</td>
+			<td>{{ row.info }}</td>
+			<td><a href="/goods/update?id={{ row.id }}">edit</a></td>
+		</tr>
+	{% endfor %}
+</table>
+
+
+

@@ -1,0 +1,94 @@
+<div class="row">
+	<table class="table stacktable">
+		<tr>
+			<td>ФИО</td>
+			<td>Статус</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		{% for row in name %}
+		<tr>
+			<td>
+				<a target="_blank" href="/persons/view?id={{ row.id }}">
+					{{ row.second_name }} {{ row.name }} {{ row.middle_name }}
+				</a>
+				<span> - {{ row.id }}</span>
+			</td>
+			<td>{{ row.status }}</td>			
+			<td>
+				{% set abonementactive = 0 %}
+				{% for abon in row.abonements %}
+				{% if abon.status == 1 %}
+				{% set abonementactive = 1 %}
+				{% endif %}
+				{% endfor %}
+
+				{% if abonementactive == 1 %}
+				<form method="get" action="/persons/visitabonement">
+					<input type="hidden" name="" value="/persons/visitabonement">
+					<input type="hidden" name="uid" value="{{ row.id }}">
+					<button type="submit" class="btn btn-primary">Абонемент</button>
+				</form>
+				{% else %}
+				<button type="" class="btn btn-empty">Абонемент</button>
+				{% endif %}
+			</td>
+
+			<td>
+				<form method="get" action="/persons/visit">
+					<input type="hidden" name="" value="/persons/visit">
+					<input type="hidden" name="uid" value="{{ row.id }}">
+					<button type="submit" class="btn btn-primary">Тариф</button>
+				</form>
+			</td>
+			<td>
+				<form>
+					<input type="hidden" name="uid" class="uid" value="{{ row.id }}">
+					<input type="button" class="byticket btn btn-primary" value="Билет">
+				</form>
+			</td>
+			<td>
+				<form>
+					<input type="hidden" name="uid" class="uid" value="{{ row.id }}">
+					<input type="button" class="sells btn btn-primary" value="Покупка">
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+<script type="text/javascript">
+	$(".byticket").click(function(){
+		console.log($(this).prev(".uid").val());
+		$.ajax({
+			type: 'get',
+				url: "/persons/formticket", //Путь к обработчику
+				data: {'uid':$(this).prev(".uid").val()},
+				response: 'text',
+				success: function(data){
+					$(".end").html(data).fadeIn(); //Выводим полученые данные в списке
+				}
+			})
+		var myscrollpop = $(window).scrollTop();
+		$('.popup.end').animate({'top': myscrollpop + 100, 'opacity': 1}, 500);
+		$('.overlay').fadeIn();
+	})
+
+
+	$(".sells").click(function(){
+		$.ajax({
+			type: 'get',
+				url: "/persons/formsell", //Путь к обработчику
+				data: {'uid':$(this).prev(".uid").val()},
+				response: 'text',
+				success: function(data){
+					$(".end").html(data).fadeIn(); //Выводим полученые данные в списке
+				}
+			})
+		var myscrollpop = $(window).scrollTop();
+		$('.popup.end').animate({'top': myscrollpop + 100, 'opacity': 1}, 500);
+		$('.overlay').fadeIn();
+	})
+</script>

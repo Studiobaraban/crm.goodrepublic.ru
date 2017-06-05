@@ -1,0 +1,63 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-3">
+		<h1>Даты</h1>
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-4">
+		
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-3">
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-2">
+		<a href="/events/create" class="btn btn-primary mt20 pull-right">+ Добавить Дату</a>
+	</div>
+</div>
+
+<h2>Будущие</h2>
+
+<table class="table stacktable">
+	<tr>
+		<td>#</td>
+		<td>Название</td>
+		<td>Категория</td>
+		<td>Дата</td>
+		<td>Время</td>
+		<td>Описание</td>
+		<td></td>
+	</tr>
+	{% for row in events %}
+		<tr>
+			<td>{{ row.id|e }}</td>
+			<td><a href="/events/view?id={{ row.id|e }}">{{ row.biblioevents.name|e }}</a></td>
+			<td>{{ row.biblioevents.categoryevents.category }}</td>
+			<td>{{ row.date|date('d.m') }}</td>
+			<td>{{ row.date|date('H:i') }}</td>
+			<td>{{ row.comment }}</td>
+			<td><a href="/events/update?id={{ row.id|e }}">edit</a></td>
+		</tr>
+	{% endfor %}
+</table>
+
+
+<h2>Прошедшие</h2>
+<table class="table stacktable">
+	<tr>
+		<td>#</td>
+		<td>Название</td>
+		<td>Категория</td>
+		<td>Дата</td>
+		<td>Время</td>
+		<td>Описание</td>
+		<td></td>
+	</tr>
+	{% for row in eventsold %}
+		<tr>
+			<td>{{ row.id|e }}</td>
+			<td><a href="/events/view?id={{ row.id|e }}">{{ row.biblioevents.name|e }}</a></td>
+			<td>{{ row.biblioevents.categoryevents.category }}</td>
+			<td>{{ row.date|date('d.m') }}</td>
+			<td>{{ row.date|date('H:i') }}</td>
+			<td>{{ row.comment }}</td>
+			<td><a href="/events/update?id={{ row.id|e }}">edit</a></td>
+		</tr>
+	{% endfor %}
+</table>

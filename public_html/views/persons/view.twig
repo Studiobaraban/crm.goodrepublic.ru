@@ -1,0 +1,152 @@
+<h1>{{ user.second_name|e }} {{ user.name|e }} {{ user.middle_name|e }} <span><a href="/persons/update?id={{ user.id }}" class="btn btn_lite">Редактировать</a></span></h1>
+
+
+<div class="row">
+	<!--div class="col-xs-12 col-sm-6 col-lg-4">
+		<img src="/images/guest.png" class="img-responsive user">
+	</div-->
+	<div class="col-xs-12 col-sm-6 col-lg-4">
+		<div class="blocks">
+			<h2>Профиль <span>id {{ user.id }}</span></h2>
+			<p><b>Статус:</b> {{ user.status }}</p>
+			<p><b>Дата рождения:</b> {{ user.birthday|date('d.m.Y') }}</p>
+			<p><b>E-mail:</b> {{ user.mail }}</p>
+			<p><b>Телефон:</b> {{ user.phone }}</p>
+			<p><b>Пол:</b> {% if user.sex == 0 %} женщина {% else %} мужчина {% endif %} </p>
+			<p><b>Группы:</b> {{ user.group }}</p>
+			<p><b>Откуда:</b>
+				{% if user.froms == 1 %} КудаГо
+				{% elseif user.froms == 2 %} Сайт ХР
+				{% elseif user.froms == 3 %} СоцСети(не помню точно какая)
+				{% elseif user.froms == 4 %} Друзья
+				{% elseif user.froms == 5 %} Другое
+				{% elseif user.froms == 6 %} Листовки
+				{% elseif user.froms == 7 %} Морейнис
+				{% elseif user.froms == 8 %} Событие
+				{% elseif user.froms == 9 %} Джаз
+				{% elseif user.froms == 10 %} Концерт
+				{% elseif user.froms == 11 %} Вконтакте
+				{% elseif user.froms == 12 %} FaceBook
+				{% elseif user.froms == 13 %} instagram
+				{% elseif user.froms == 14 %} Проходили мимо
+				{% endif %} </p>
+				<p><b>Получать письма:</b> {% if user.sendmail == 1 %} Да {% else %} Нет {% endif %} </p>
+				<p><b>Пожелания:</b> {{ user.vishes }}</p>
+			</div>
+		</div>
+
+
+		<div class="col-xs-12 col-sm-6 col-lg-4">
+			<div class="blocks">
+				<h2>Информация</h2>
+				<p>{{ user.info }}</p>
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-6 col-lg-4">
+			<div class="blocks">
+				<h2>Абонементы</h2>
+				{% for abonement in abonements %}
+					<div class="row{% if abonement.status == 1 %} active {% else %} sss {% endif %}">
+						<p class="col-xs-6 col-sm-6">с {{ abonement.start|date('d.m') }} &nbsp;&nbsp;&nbsp; по {{ abonement.end|date('d.m') }}</p>
+						<p class="col-xs-6 col-sm-3">{{ abonement.countvis }} виз.</p>
+						<p class="col-xs-6 col-sm-3">{{ abonement.price }} р.</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		<div class="clear"></div>
+
+		<div class="col-xs-12 col-sm-6 ">
+			<h2>Визиты <span>{{ user.visits|length }} {{ visitword|e }}, на {{summ}} р</span> </h2>
+
+			<table class="table stacktable">
+				<tr>
+					<td>Начало</td>
+					<td>Окончание</td>
+					<td>Скидка</td>
+					<td>Стоимость</td>
+				</tr>
+				{% for row in user.visits|reverse %}
+					<tr>
+						<td>{{ row.start|date('d.m в H:i') }}</td>
+						<td>{{ row.end|date('d.m в H:i') }}</td>
+						<td>{{ row.discount_money }}</td>
+						<td>{{ row.money }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			<h2>Покупки <span>будут позже</span></h2>
+		</div>
+
+
+	<!--div class="col-xs-12 col-sm-6">
+		<h2>Покупки <span>12шт,</span><span>на 650р</span></h2>
+
+		<table class="table stacktable">
+			<tr>
+				<td>Дата</td>
+				<td>В гостях</td>
+				<td>Скидка</td>
+				<td>Стоимость</td>
+			</tr>
+			{% for row in user.visits %}
+				<tr>
+					<td>{{ row.id }}</td>
+					<td>{{ row.start }}</td>
+					<td>{{ row.discount_money }}</td>
+					<td>{{ row.money }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+		<p>12.10 '16 чай 1шт 80р</p>
+	</div-->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!--div class="persons-view">
+
+	<h1><?= Html::encode($this->title) ?></h1>
+
+	<p>
+		<?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a('Delete', ['delete', 'id' => $model->id], [
+			'class' => 'btn btn-danger',
+			'data' => [
+				'confirm' => 'Are you sure you want to delete this item?',
+				'method' => 'post',
+			],
+		]) ?>
+	</p>
+
+	<?= DetailView::widget([
+		'model' => $model,
+		'attributes' => [
+			'id',
+			'name',
+			'second_name',
+			'middle_name',
+			'mail',
+			'phone',
+			'status',
+			'inside',
+		],
+	]) ?>
+
+</div-->
+
+
+
