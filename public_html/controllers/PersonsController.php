@@ -150,6 +150,16 @@ class PersonsController extends Controller
 			SUM(itogo) - SUM(CASE WHEN type = 4 THEN itogo ELSE 0 END) as itogo
 			FROM sells GROUP BY CAST(date AS DATE) Order BY date DESC')->all();
 
+		$abonementsall = Abonements::findBySql('
+			SELECT
+			CAST(start AS DATE) as start, 
+			SUM(CASE WHEN type = 1 THEN price ELSE 0 END) as user_id,
+			SUM(CASE WHEN type = 2 THEN price ELSE 0 END) as countvis,
+			SUM(CASE WHEN type = 3 THEN price ELSE 0 END) as price,
+			SUM(CASE WHEN type = 4 THEN price ELSE 0 END) as balance,
+			SUM(price) - SUM(CASE WHEN type = 4 THEN price ELSE 0 END) as info
+			FROM abonements GROUP BY CAST(start AS DATE) Order BY start DESC')->all();
+
 
 
 		$result = array();
@@ -170,10 +180,17 @@ class PersonsController extends Controller
 					break;
 				}
 			}
+			
+			$abonemets_money = 0;
+			foreach ($abonementsall as $abon) {
+				if($abon['start'] == $row['start']){
+					$abonemets_money = $abon['info'];
+					break;
+				}
+			}
 
-			$result[] = [$row['start'], $row['money'], $ticket_money, $sells_itogo, $row['money'] + $ticket_money + $sells_itogo];
+			$result[] = [$row['start'], $row['money'], $ticket_money, $sells_itogo, $abonemets_money, $row['money'] + $ticket_money + $sells_itogo + $abonemets_money];
 		}
-
 
 
 		$visitsallmonth = Visits::findBySql('
@@ -196,7 +213,7 @@ class PersonsController extends Controller
 			Sum(itogo) - SUM(CASE WHEN type = 4 THEN itogo ELSE 0 END) as itogo
 			FROM sells Group By Year(date), Month(date) Order BY date DESC')->all();
 
-
+		
 
 
 		$resultmonth = array();
@@ -217,6 +234,7 @@ class PersonsController extends Controller
 					break;
 				}
 			}
+			
 
 			$resultmonth[] = [$row['start'], $row['money'], $ticket_money, $sells_itogo, $row['money'] + $ticket_money + $sells_itogo];
 		}

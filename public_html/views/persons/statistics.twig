@@ -119,6 +119,7 @@
 		<td class="ta-r">Тариф</td>
 		<td class="ta-r">Билеты</td>
 		<td class="ta-r">Продажи</td>
+		<td class="ta-r">Абонемент</td>
 		<td class="ta-r">Сумма</td>
 	</tr>
 	{% for row in result %}
@@ -127,7 +128,8 @@
 		<td class="ta-r">{{ row[1]|number_format(0, '.', ' ') }} р</td>
 		<td class="ta-r">{{ row[2]|number_format(0, '.', ' ') }} р</td>
 		<td class="ta-r">{{ row[3]|number_format(0, '.', ' ') }} р</td>
-		<td class="ta-r"><b>{{ row[4]|number_format(0, '.', ' ') }} р</b></td>
+		<td class="ta-r">{{ row[4]|number_format(0, '.', ' ') }} р</td>
+		<td class="ta-r"><b>{{ row[5]|number_format(0, '.', ' ') }} р</b></td>
 	</tr>
 	{% endfor %}
 </table>
@@ -149,6 +151,7 @@
 		<td class="ta-r">Тариф</td>
 		<td class="ta-r">Билеты</td>
 		<td class="ta-r">Продажи</td>
+		<td class="ta-r">Абонемент</td>
 		<td class="ta-r">Сумма</td>
 	</tr>
 	{% for rowmonth in resultmonth %}
@@ -157,6 +160,7 @@
 		<td class="ta-r">{{ rowmonth[1] }} р</td>
 		<td class="ta-r">{{ rowmonth[2] }} р</td>
 		<td class="ta-r">{{ rowmonth[3] }} р</td>
+		<td class="ta-r">{{ rowmonth[5] }} р</td>
 		<td class="ta-r"><b>{{ rowmonth[4] }} р</b></td>
 	</tr>
 	{% endfor %}
