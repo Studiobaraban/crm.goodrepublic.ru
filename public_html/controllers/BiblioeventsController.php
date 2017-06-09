@@ -16,7 +16,7 @@ use yii\filters\AccessControl;
  */
 class BiblioeventsController extends Controller
 {
-    /**
+    /**Í
      * @inheritdoc
      */
     public function behaviors()
