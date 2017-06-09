@@ -1,0 +1,209 @@
+/* ОБЩИЕ СТИЛИ
+-------------------------------------------------- */
+
+@font-face {
+	font-family:'lato';
+	src:local('O'), url('../fonts/latoregular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family:'latoheavy';
+	src:local('O'), url('../fonts/latoheavy.ttf') format('truetype');
+}
+
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+body {
+	margin-bottom: 250px; /* отступ для footer */
+	font-family: 'Lato', Tahoma, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-size: 18px;
+	line-height: 24px;
+	color: #000;
+	background: #fff;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  padding: 10px 0;
+  color: #333;
+  background: #e4e7e3;
+}
+
+.footer h4 {
+  margin: 40px auto;
+}
+
+.footer .soc {
+  width: 380px;
+  margin: auto;
+}
+
+
+
+/* ТИПОГРАФИКА
+-------------------------------------------------- */
+
+
+h1, h2, h3, h4 {
+	font-family:'latoheavy';
+	text-transform: uppercase;
+	margin: 20px auto 30px auto;
+	text-align: center;
+	color: #000;
+	letter-spacing: 2px;
+}
+
+h2 { font-size: 36px;}
+h3 { font-size: 21px;}
+h4 { font-size: 16px; margin: 0 0 10px 0;}
+
+a { color: #f53741;}
+
+
+pre {
+	background: none;
+	border: none;
+}
+
+
+.p21 { font-size: 21px; margin: 0;}
+.ph1 { font-family: 'latoheavy'; font-size: 60px; font-weight: 700; line-height: 60px;}
+
+
+
+
+
+/* МЕНЮ
+-------------------------------------------------- */
+
+.navbar { border-radius: 0; margin-bottom: 0px;}
+.navbar-nav { float: none; margin: 0; text-align: center;}
+.navbar-nav>li { float: none; display: inline-block; font-size: 18px; width: 33%; text-align: center; }
+
+
+.input { width: 100%; padding: 5px;}
+textarea.input { height: 100px; }
+.inimg { width: 100%;}
+
+
+#preview {
+	position: relative;
+	display: table;
+	width: 300px;
+	height: 300px;
+	padding: 15px;
+	overflow: hidden;
+	box-shadow: 0 0 1px 0px rgba(0,0,0,0.5);
+}
+
+#preview img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+
+#text_preview {
+	position: relative;
+	display: table-cell;
+    vertical-align: middle;
+	z-index: 100;
+}
+
+
+/*   Я В СОЦ.СЕТЯХ   */
+
+.social {
+	width: 100%;
+	height: 200px;
+  padding-top: 80px;
+	background: url('../images/email.jpg') 0px 1200px;
+	background-size: cover;
+}
+
+.social p.bigtext {
+    margin-top: -30px;
+}
+
+a.ss {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* УНИВЕРСАЛЬНЫЕ СТИЛИ
+-------------------------------------------------- */
+
+
+.mt50 { margin-top: 50px; }
+
+
+
+
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+
+
+@media (max-width: 767px) {
+	
+
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) { 
+
+	.event, .video { width: 50%; }
+
+}
+
+
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	
+	.event, .video { width: 33.3%; }
+
+}
+
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+
+	.event, .video { width: 25%; }
+
+}
+
+
+@media (min-width: 1600px) {
+
+	.event, .video { width: 20%; }
+
+}
+
+
+
+
+
+
+
+
