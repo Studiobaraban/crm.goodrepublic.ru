@@ -38,6 +38,7 @@ class Visits extends \yii\db\ActiveRecord
 		];
 	}
 
+
 	/**
 	 * @inheritdoc
 	 */
