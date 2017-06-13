@@ -33,6 +33,7 @@ class Visits extends \yii\db\ActiveRecord
 		return [
 			[['user_id'], 'required'],
 			[['user_id', 'event_id', 'money', 'discount_money'], 'integer'],
+			[['type'], 'string'],
 			[['start', 'end'], 'safe'],
 		];
 	}
@@ -50,7 +51,7 @@ class Visits extends \yii\db\ActiveRecord
 			'end' => 'End',
 			'money' => 'Money',
 			'discount_money' => 'Discount',
-			'type' => 'Type'
+			'type' => '1 - Наличка, 2 - Безнал, 3- Билетник, 4 - GoodRepublic, 5 - Абонемент'
 		];
 	}
 	
