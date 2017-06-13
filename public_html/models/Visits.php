@@ -32,8 +32,7 @@ class Visits extends \yii\db\ActiveRecord
 	{
 		return [
 			[['user_id'], 'required'],
-			[['user_id', 'event_id', 'money', 'discount_money'], 'integer'],
-			[['type'], 'string'],
+			[['user_id', 'event_id', 'money', 'discount_money', 'type'], 'integer'],
 			[['start', 'end'], 'safe'],
 		];
 	}
