@@ -16,6 +16,7 @@ use Yii;
  * @property integer $price
  * @property integer $status
  * @property string $info
+ * @property string $type
  */
 class Abonements extends \yii\db\ActiveRecord
 {
@@ -33,8 +34,8 @@ class Abonements extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['user_id', 'start', 'end', 'countvis', 'price', 'balance'], 'required'],
-			[['user_id', 'countvis', 'price', 'status', 'balance'], 'integer'],
+			[['user_id', 'start', 'end', 'countvis', 'price', 'balance', 'type'], 'required'],
+			[['user_id', 'countvis', 'price', 'status', 'balance', 'type'], 'integer'],
 			[['start', 'end'], 'safe'],
 			[['info'], 'string'],
 		];
@@ -55,6 +56,7 @@ class Abonements extends \yii\db\ActiveRecord
 			'status' => 'Статус  1 — активен, 0 — не активен',
 			'balance' => 'Остаток визитов',
 			'info' => 'Информация',
+			'type' => 'Тип оплаты',
 		];
 	}
 

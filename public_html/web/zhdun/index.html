@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Купить Ждуна</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/myjs.js"></script>
+	<script type="text/javascript" src="js/jquery.stellar.min.js"></script>
+	<script type="text/javascript" src="js/scroll.js"></script>
+	<script type="text/javascript" src="js/scrollTo.js"></script>
+
+	<link href="css/carousel.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/mystyle.css" rel="stylesheet">
+
+	<link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+	<div class="container-fluid tophead">
+		<div class="row">
+			<div class="topfon" >
+
+				<div class="topmenu">
+					<div class="container">
+						<div class="col-xs-6 col-sm-4" style="padding: 15px;">
+							<p>ст.м Чистые пруды</p>
+							<p>ул. Мясницкая, 13, стр. 24</p>
+						</div>
+						<div class="hidden-xs col-sm-4">
+							<a target="_blank">
+								<!--img src="images/logoeveconf2.png" class="featurette-image img-responsive center-block logo2 anim"-->
+							</a>
+						</div>
+						<div class="col-xs-6 col-sm-4" style="padding: 15px;">
+							<p>ХОРОШАЯ РЕСПУБЛИКА</p>
+							<p>+7 (495) 625-48-60</p>
+						</div>
+					</div>
+				</div>
+				<div class="texts">
+					<h1>Ждун Loxodontus</h1>
+					<h2>Я жду тебя!</h2>
+					<p class="tac">Если у вас еще нет своего ручного скукоженного 9-ти сантиметрового дружка, который постоянно чего-то ждет, то этот Loxodontus для вас! Вы можете купить Ждуна. </p>
+
+					<h2>1800 руб</h2>
+
+					<a class="btn btn-red a_pop top_btn">Заказать Ждуна</a>
+					<p class="tac">	Кресло не является частью фигурки.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+
+
+<div class="popup1">
+	<div class="fclose"></div>
+	<div class="formone" id="formone">
+		<div class="messageok">
+			<p>Спасибо!</p>
+			<p>Ваша заявка принята!</p>
+		</div>
+
+		<div class="form_send">
+			<form method="POST" id="send">
+				<div class="form_img"></div>
+				<h3>Заполните форму</h3>
+				<p>Забрать Ждуна вы можете по адресу: <br> Москва, ст.м Чистые пруды, ул. Мясницкая, 13, стр. 24, "ХОРОШАЯ РЕСПУБЛИКА"</p>
+				<input name="utm_source" type="hidden" value="false">
+				<input name="utm_medium" type="hidden" value="false">
+				<input name="utm_campaign" type="hidden" value="false">
+				<input name="utm_content" type="hidden" value="false">
+				<input name="utm_term" type="hidden" value="false">
+				<input name="name" required="required" type="text" placeholder="Фамилия и Имя">
+				<input name="mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required="required" type="text" placeholder="Email">
+				<input name="phone" required="required" type="text" placeholder="Телефон">
+				<input type="submit" value="Отправить" class="btn submitter btn-red">
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<div class="overlay"></div>
+
+
+<script>
+
+
+	function getCookies(){
+		var pairs = document.cookie.split(";");
+		for (var i=0; i<pairs.length; i++){
+			var pair = pairs[i].split("=");			
+		}
+		return;
+	}
+
+	function setCookie(name, value, expirydays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (expirydays*24*60*60*1000));
+		var expires = "expires="+ d.toUTCString();
+		document.cookie = name + "=" + value + "; " + expires;
+	}
+
+	getCookies();
+
+	$("#send").submit(function(e) {
+		console.log($("#send").serialize())
+		$.ajax({
+			type: "POST",
+			url: '/form.php',
+			data: $("#send").serialize(),
+			success: function(data)
+			{
+				console.log(data);
+			},
+			error: function(data)
+			{
+				console.log(data);
+			},
+		});
+
+		e.preventDefault();
+		$('.formone .form_send').fadeOut(500);
+		$('.formone .messageok').fadeIn(500);
+
+	}
+	);
+
+
+
+</script>
+
+
+</body>
+</html>
