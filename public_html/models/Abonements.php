@@ -56,7 +56,7 @@ class Abonements extends \yii\db\ActiveRecord
 			'status' => 'Статус  1 — активен, 0 — не активен',
 			'balance' => 'Остаток визитов',
 			'info' => 'Информация',
-			'type' => 'Тип оплаты',
+			'type' => '1 - Наличка, 2 - Безнал, 3- Билетник, 4 - GoodRepublic, 5 - Абонемент'
 		];
 	}
 
