@@ -53,6 +53,8 @@ use app\models\Persons;
     <?= $form->field($model, 'balance')->textInput() ?>
 
     <?= $form->field($model, 'price')->textInput() ?>
+
+    <?= $form->field($model, 'type')->textInput() ?>
  
     <?= $form->field($model, 'status')->textInput() ?>
 

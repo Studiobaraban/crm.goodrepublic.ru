@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'end',
             'countvis',
             'price',
+            'type',
             'status',
             'info:ntext',
         ],
